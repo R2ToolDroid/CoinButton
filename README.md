@@ -12,6 +12,7 @@ These Panel based on following Parts:
 - Script
 - 3D printet Coinbuttons 
 - 3D printet Frame for PCB and Buttons
+- 3D Clips to hold the PCB to Frame
 
 The Panel sends 17 configurable commands via Serial out TX Port on the Arduino Nano
 

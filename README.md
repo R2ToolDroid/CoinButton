@@ -15,7 +15,9 @@ These Panel based on following Parts:
 
 The Panel sends 17 configurable commands via Serial out TX Port on the Arduino Nano
 
-The actual Script include some Marcduino Commands for the Dome Boards but can easy customize.
+The actual Script include some Marcduino Commands for the Dome Boards but you can easy customize.
+
+https://www.youtube.com/watch?v=c4UOg3DOG3U
 
 
 

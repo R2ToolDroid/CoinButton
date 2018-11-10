@@ -20,6 +20,8 @@ The actual Script include some Marcduino Commands for the Dome Boards but you ca
 
 https://www.youtube.com/watch?v=c4UOg3DOG3U
 
+Have fun...
+
 
 
 

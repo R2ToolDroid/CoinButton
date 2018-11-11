@@ -80,7 +80,7 @@ void setup() {
     pinMode(buttonPin[thisPin], INPUT);
   }
 
-  Serial.println("SCRIPT: coin-slot-panel-1.2 26.10.2018");
+  Serial.println("SCRIPT: CoinButton 26.10.2018");
   delay(3000);
   Serial.println("initiate......");
   Serial.println("...fuer DebugMode 1 eingeben...");

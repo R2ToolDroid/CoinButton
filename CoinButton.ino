@@ -9,31 +9,57 @@
 // constants won't change. They're used here to
 // set pin numbers:
 
-
-//  LED A1 |  Button 1 |  LED B1
-//  LED A2 |  Button 2 |  LED B2
-//  LED A3 |  Button 3 |  LED B3
-//  LED A4 |  Button 4 |  LED B4
-//  LED A5 |  Button 5 |  LED B5
-//  LED A6 |  Button 6 |  LED B6
+//    A                        B
+//  LED 7   A0-14   |  Button 1   |   LED 1    D13-13
+//  LED 8   A1-15   |  Button 2   |   LED 2    D12-12
+//  LED 9   A2-16   |  Button 3   |   LED 3    D11-11
+//  LED 10  A3-17   |  Button 4   |   LED 4    D10-10
+//  LED 11  A4-18   |  Button 5   |   LED 5    D9-9
+//  LED 12  D8-8    |  Button 6   |   LED 6    
 
 
 //Button 5 and 6 are for select Level
 //Button 4 is for Excecute the Command
 
+//Arduino Pin Numbers V3 
 
-const int buttonPin[] = {6, 7, 5, 4, 3, 2};     // Button PIN Array
-const int ledPinA[] =  {14, 15, 16, 17, 18, 19};      // the number of the LED pin
-const int ledPinB[] =  {13, 12, 11, 10, 9, 8};      // the number of the LED pin
+// TX - 1  
+// RX - 0  
+// D2 - 2
+// D3 - 3
+// D4 - 4
+// D5 - 5
+// D6 - 6
+// D7 - 7
+// D8 - 8
+// D9 - 9
+// D10- 10
+// D11- 11
+// D12- 12
+// D13- 13
 
-const int pinCount = 6; //Raster 6 Tasten
+// A0 - 14
+// A1 - 15
+// A2 - 16
+// A3 - 17
+// A4 - 18
+// A5 - 19
+// A6 - 20 ?
+// A7 - 21 ?
+
+
+int buttonPin[] = {7, 6, 5, 4, 3, 2};     // Button PIN Array
+int ledPinA[] =  {14, 15, 16, 17, 18, 8};      // the number of the LED pin
+int ledPinB[] =  {13, 12, 11, 10, 9, 19};      // the number of the LED pin
+
+int pinCount = 6; //Raster 6 Tasten
 int level = 0;
 
 // this String will come in future from SD Card to make R2 easyer to learn
 // this Sting shuld have 17 Commands now
 // Here typical Marcduino Commands
 
-const String syscmd[] = {
+String syscmd[] = {
   ":SE00",      //0   Close all panels (full speed), servo off - use as init only. Use CL00 for all soft close.
   ":SE01",      //1   Scream, with all panels open
   ":SE02",      //2   Wave, one panel at a time
@@ -68,7 +94,7 @@ int buttonState5 = 0;
 int buttonState6 = 0;
 
 String cmd; //Consohlen Input
-byte debug; //Debug function
+byte debug = 0; //Debug function
 
 void setup() {
   Serial.begin(9600);
@@ -79,20 +105,23 @@ void setup() {
     pinMode(ledPinB[thisPin], OUTPUT);
     pinMode(buttonPin[thisPin], INPUT);
   }
+  
+  if (digitalRead(buttonPin[5]) == HIGH) {
 
   Serial.println("SCRIPT: CoinButton 26.10.2018");
-  delay(3000);
+  
   Serial.println("initiate......");
-  Serial.println("...fuer DebugMode 1 eingeben...");
-  Serial.println("...ende DebugMode 0 eingeben...");
+  Serial.println("DebugMode ON");
+  Serial.println("...");
+  delay(5000);
+  debug = 1;
+  }
 }
 
 
 
 void loop() {
-  while (Serial.available() > 0) {
-    checkdebug(); ///debuging prüfen
-  }
+  
 
   // read the state of the pushbutton value:
   buttonState1 = digitalRead(buttonPin[0]);
@@ -117,21 +146,29 @@ void loop() {
   // if it is, the buttonState is HIGH:
   if (buttonState1 == HIGH) {
 
-    //if (debug == 1) {
+    if (debug == 1) {
     Serial.println("Button-1 - Levelreset");
-    //}
+    }
+    
     level = 0;
-    for (int thisPin = 0; thisPin < pinCount; thisPin++) {
-      digitalWrite(ledPinA[thisPin], HIGH);
-      digitalWrite(ledPinB[thisPin], HIGH);
-    }
-  } else {
-
-    for (int thisPin = 0; thisPin < pinCount; thisPin++) {
-      digitalWrite(ledPinA[thisPin], LOW);
-      digitalWrite(ledPinB[thisPin], LOW);
-    }
-  }
+    
+      for (int thisPin = 0; thisPin < pinCount; thisPin++) {
+        digitalWrite(ledPinA[thisPin], HIGH);
+        digitalWrite(ledPinB[thisPin], HIGH);
+        
+        buttonState2 == LOW;
+        buttonState3 == LOW;
+        
+        
+        } 
+  }// end button 1
+  
+      for (int thisPin = 0; thisPin < pinCount; thisPin++) {
+           digitalWrite(ledPinA[thisPin], LOW);
+          digitalWrite(ledPinB[thisPin], LOW);
+        }   // end for
+    
+    
 
   if (buttonState2 == HIGH) {
     
@@ -145,12 +182,16 @@ void loop() {
     }
 
     delay(1000);
-
-
-  } else {
-    // turn LED off:
     
-}
+    buttonState2 == LOW;
+    
+    for (int thisPin = 0; thisPin < pinCount; thisPin++) {
+      digitalWrite(ledPinA[thisPin], LOW);
+
+      digitalWrite(ledPinB[thisPin], LOW);
+      delay(100);
+    }
+ } 
 
   if (buttonState3 == HIGH) {
     // turn LED on:
@@ -315,23 +356,3 @@ int matrix() {
 
 }
 
-
-void checkdebug() {
-
-  cmd = "";
-  cmd = Serial.read();
-  int h = Serial.available();
-  for (int i = 0; i < h; i++) {
-    cmd += (char)Serial.read();
-  }
-
-  if (cmd == "49") {
-    Serial.print( cmd + " OK debug on" + "\n" ); //Kommando quittieren
-    debug = 1;
-  }
-  if (cmd == "48") {
-    Serial.print( cmd + " OK debug off" + "\n" ); //Kommando quittieren
-    debug = 0;
-  }
-  return;
-}

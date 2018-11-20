@@ -1,9 +1,9 @@
 /*
   CoinButton Taster System R2 ToolDroid
-
-
   created 2018
-  by Doc Snyder <http://www.0j0.org>
+  by Doc Snyder <https://github.com/R2ToolDroid>
+
+  System mit Serial Read Input
 */
 
 // constants won't change. They're used here to
@@ -15,11 +15,12 @@
 //  LED 9   A2-16   |  Button 3   |   LED 3    D11-11
 //  LED 10  A3-17   |  Button 4   |   LED 4    D10-10
 //  LED 11  A4-18   |  Button 5   |   LED 5    D9-9
-//  LED 12  D8-8    |  Button 6   |   LED 6    
+//  LED 12  D8-8    |  Button 6   |   LED 6    A5-19
 
 
 //Button 5 and 6 are for select Level
 //Button 4 is for Excecute the Command
+//HOLD BUTTON 5 on Start for Debugsequence
 
 //Arduino Pin Numbers V3 
 
@@ -47,7 +48,6 @@
 // A6 - 20 ?
 // A7 - 21 ?
 
-
 int buttonPin[] = {7, 6, 5, 4, 3, 2};     // Button PIN Array
 int ledPinA[] =  {14, 15, 16, 17, 18, 8};      // the number of the LED pin
 int ledPinB[] =  {13, 12, 11, 10, 9, 19};      // the number of the LED pin
@@ -73,16 +73,18 @@ String syscmd[] = {
   ":SE10",      //10  Quite Mode reset (panel close, stop holos, stop sounds)
   ":SE11",      //11  Full Awake Mode reset (panel close, random sound, holo movement, no holo lights)
   ":SE12",     //12  Top Panels to RC
-  ":SE13",   //13    Mid Awake Mode reset (panel close, random sound, stop holos)
+  ":SE13",     //13    Mid Awake Mode reset (panel close, random sound, stop holos)
   ":SE14",     //14  Awake+ Mode reset ((panel close, random sound, holo movement, lights on)
-  ":SE15 ",      //15
+  ":SE15 ",    //15
   "kjhjas",   //16
   "tzuw"     //17
   
 
 };
 
+// Vars for Serial Input
 
+String cmd; //Consohlen Input
 
 // variables will change:
 
@@ -93,7 +95,6 @@ int buttonState4 = 0;
 int buttonState5 = 0;
 int buttonState6 = 0;
 
-String cmd; //Consohlen Input
 byte debug = 0; //Debug function
 
 void setup() {
@@ -109,7 +110,6 @@ void setup() {
   if (digitalRead(buttonPin[5]) == HIGH) {
 
   Serial.println("SCRIPT: CoinButton 26.10.2018");
-  
   Serial.println("initiate......");
   Serial.println("DebugMode ON");
   Serial.println("...");
@@ -121,7 +121,8 @@ void setup() {
 
 
 void loop() {
-  
+
+  getCMD();
 
   // read the state of the pushbutton value:
   buttonState1 = digitalRead(buttonPin[0]);
@@ -284,6 +285,24 @@ void loop() {
 
 
 
+void getCMD() {     // Input Comando auswerten
+  
+  while(Serial.available()) {
+    
+        cmd= Serial.readString();// read the incoming data as string
+        Serial.println(cmd); 
+
+        if (cmd)
+        {
+          level = cmd.toInt();
+        }
+
+        
+     
+    } // End While
+  
+}
+
 int matrix() {
 
   switch (level) {
@@ -355,4 +374,3 @@ int matrix() {
 
 
 }
-

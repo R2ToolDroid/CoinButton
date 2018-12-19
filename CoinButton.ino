@@ -58,12 +58,21 @@ int level = 0;
 // this String will come in future from SD Card to make R2 easyer to learn
 // this Sting shuld have 17 Commands now
 // Here typical Marcduino Commands
+// Direkt push Commands:
+// BUTTON 1   Reset and mode0 RAND to Dome
+// BUTTON 2   mode1 RC to Dome
+// BUTTON 3   charge panel open
+// BUTTON 4   EXECUTE Sequence
+// BUTTON 5   Level +
+// BUTTON 6   Level -
+
+
 
 String syscmd[] = {
   ":SE00",      //0   Close all panels (full speed), servo off - use as init only. Use CL00 for all soft close.
-  ":SE01",      //1   Scream, with all panels open
-  ":SE02",      //2   Wave, one panel at a time
-  ":SE03",      //3   Fast (Smirk) back and forth wave
+  "usb",      //1   Scream, with all panels open
+  "tool1",      //2   Wave, one panel at a time
+  "tool2",      //3   Fast (Smirk) back and forth wave
   ":SE04",      //4   Wave 2 (open progressively all panels, then close one by one)
   ":SE05",      //5   Beep Cantina (with marching ants panel action)
   ":SE06 ",     //6   Faint/Short Circuit
@@ -72,12 +81,12 @@ String syscmd[] = {
   ":SE09",      //9   Disco
   ":SE10",      //10  Quite Mode reset (panel close, stop holos, stop sounds)
   ":SE11",      //11  Full Awake Mode reset (panel close, random sound, holo movement, no holo lights)
-  ":SE12",     //12  Top Panels to RC
-  ":SE13",     //13    Mid Awake Mode reset (panel close, random sound, stop holos)
-  ":SE14",     //14  Awake+ Mode reset ((panel close, random sound, holo movement, lights on)
-  ":SE15 ",    //15
-  "kjhjas",   //16
-  "tzuw"     //17
+  ":SE12",      //12  Top Panels to RC
+  ":SE13",      //13    Mid Awake Mode reset (panel close, random sound, stop holos)
+  ":SE14",      //14  Awake+ Mode reset ((panel close, random sound, holo movement, lights on)
+  ":SE15 ",     //15
+  "move",       //16
+  "drive"       //17
   
 
 };
@@ -122,7 +131,7 @@ void setup() {
 
 void loop() {
 
-  getCMD();
+  
 
   // read the state of the pushbutton value:
   buttonState1 = digitalRead(buttonPin[0]);
@@ -150,6 +159,10 @@ void loop() {
     if (debug == 1) {
     Serial.println("Button-1 - Levelreset");
     }
+
+    Serial.print("mode0");
+    Serial.print("\r");
+    delay(1000);
     
     level = 0;
     
@@ -181,8 +194,13 @@ void loop() {
       digitalWrite(ledPinA[thisPin], HIGH);
       digitalWrite(ledPinB[thisPin], HIGH);
     }
+    
+    Serial.print ("mode1");
+    Serial.print ("\r");
 
     delay(1000);
+
+   
     
     buttonState2 == LOW;
     
@@ -201,6 +219,11 @@ void loop() {
       Serial.println("Button-3");
     }
 
+    Serial.print ("try dome");
+    Serial.print ("\r");
+    delay(1000);
+
+    
     for (int thisPin = 0; thisPin < pinCount; thisPin++) {
       digitalWrite(ledPinA[thisPin], LOW);
       digitalWrite(ledPinB[thisPin], LOW);
@@ -280,14 +303,14 @@ void loop() {
 
   }
 
-
+   getCMD();
 }
 
 
 
 void getCMD() {     // Input Comando auswerten
   
-  while(Serial.available()) {
+  while(Serial.available() > 0  ) {
     
         cmd= Serial.readString();// read the incoming data as string
         Serial.println(cmd); 

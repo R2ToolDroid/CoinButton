@@ -69,24 +69,24 @@ int level = 0;
 
 
 String syscmd[] = {
-  ":SE00",      //0   Close all panels (full speed), servo off - use as init only. Use CL00 for all soft close.
-  "usb",      //1   Scream, with all panels open
-  "tool1",      //2   Wave, one panel at a time
-  "tool2",      //3   Fast (Smirk) back and forth wave
-  ":SE04",      //4   Wave 2 (open progressively all panels, then close one by one)
-  ":SE05",      //5   Beep Cantina (with marching ants panel action)
-  ":SE06 ",     //6   Faint/Short Circuit
-  ":SE07",      //7   Cantina dance (orchestral, rhythmic panel dance)
-  ":SE08",      //8   Leia
-  ":SE09",      //9   Disco
-  ":SE10",      //10  Quite Mode reset (panel close, stop holos, stop sounds)
-  ":SE11",      //11  Full Awake Mode reset (panel close, random sound, holo movement, no holo lights)
-  ":SE12",      //12  Top Panels to RC
-  ":SE13",      //13    Mid Awake Mode reset (panel close, random sound, stop holos)
-  ":SE14",      //14  Awake+ Mode reset ((panel close, random sound, holo movement, lights on)
-  ":SE15 ",     //15
-  "move",       //16
-  "drive"       //17
+  "CB0",      //0   Close all panels (full speed), servo off - use as init only. Use CL00 for all soft close.
+  "CB1",      //1   Scream, with all panels open
+  "CB2",      //2   
+  "CB3",      //3   
+  "CB4",      //4   Wave 2 (open progressively all panels, then close one by one)
+  "CB5",      //5   Beep Cantina (with marching ants panel action)
+  "CB6",     //6   Faint/Short Circuit
+  "CB7",      //7   Cantina dance (orchestral, rhythmic panel dance)
+  "CB8",      //8   Leia
+  "CB9",      //9   Disco
+  "CB19",      //10  Quite Mode reset (panel close, stop holos, stop sounds)
+  "CB11",      //11  Full Awake Mode reset (panel close, random sound, holo movement, no holo lights)
+  "CB12",      //12  Top Panels to RC
+  "CB13",      //13    Mid Awake Mode reset (panel close, random sound, stop holos)
+  "CB14",      //14  Awake+ Mode reset ((panel close, random sound, holo movement, lights on)
+  "CB15 ",     //15
+  "CB16",       //16
+  "CB17"       //17
   
 
 };
@@ -160,7 +160,7 @@ void loop() {
     Serial.println("Button-1 - Levelreset");
     }
 
-    Serial.print("mode0");
+    Serial.print("CBD1");
     Serial.print("\r");
     delay(1000);
     
@@ -195,7 +195,7 @@ void loop() {
       digitalWrite(ledPinB[thisPin], HIGH);
     }
     
-    Serial.print ("mode1");
+    Serial.print ("CBD2");
     Serial.print ("\r");
 
     delay(1000);
@@ -219,7 +219,7 @@ void loop() {
       Serial.println("Button-3");
     }
 
-    Serial.print ("try dome");
+    Serial.print ("CBD3");
     Serial.print ("\r");
     delay(1000);
 

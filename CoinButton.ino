@@ -79,7 +79,7 @@ String syscmd[] = {
   "CB7",      //7   Cantina dance (orchestral, rhythmic panel dance)
   "CB8",      //8   Leia
   "CB9",      //9   Disco
-  "CB19",      //10  Quite Mode reset (panel close, stop holos, stop sounds)
+  "CB10",      //10  Quite Mode reset (panel close, stop holos, stop sounds)
   "CB11",      //11  Full Awake Mode reset (panel close, random sound, holo movement, no holo lights)
   "CB12",      //12  Top Panels to RC
   "CB13",      //13    Mid Awake Mode reset (panel close, random sound, stop holos)

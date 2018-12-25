@@ -84,7 +84,7 @@ String syscmd[] = {
   "CB12",      //12  Top Panels to RC
   "CB13",      //13    Mid Awake Mode reset (panel close, random sound, stop holos)
   "CB14",      //14  Awake+ Mode reset ((panel close, random sound, holo movement, lights on)
-  "CB15 ",     //15
+  "CB15",     //15
   "CB16",       //16
   "CB17"       //17
   

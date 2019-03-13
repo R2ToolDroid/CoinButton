@@ -104,7 +104,7 @@ int buttonState4 = 0;
 int buttonState5 = 0;
 int buttonState6 = 0;
 
-byte debug = 0; //Debug function
+int debug = 0; //Debug function
 
 void setup() {
   Serial.begin(9600);
@@ -161,7 +161,7 @@ void loop() {
     }
 
     Serial.print("CBD1");
-    Serial.print("\r");
+    Serial.print("\n");
     delay(1000);
     
     level = 0;
@@ -196,7 +196,7 @@ void loop() {
     }
     
     Serial.print ("CBD2");
-    Serial.print ("\r");
+    Serial.print ("\n");
 
     delay(1000);
 
@@ -220,7 +220,7 @@ void loop() {
     }
 
     Serial.print ("CBD3");
-    Serial.print ("\r");
+    Serial.print ("\n");
     delay(1000);
 
     

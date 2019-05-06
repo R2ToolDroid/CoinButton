@@ -128,6 +128,95 @@ void setup() {
 }
 
 
+void getCMD() {     // Input Comando auswerten
+  
+  while(Serial.available() > 0  ) {
+    
+        cmd= Serial.readString();// read the incoming data as string
+        Serial.println(cmd); 
+
+        if (cmd)
+        {
+          level = cmd.toInt();
+        }
+
+        
+     
+    } // End While
+  
+}
+
+int matrix() {
+
+  switch (level) {
+    case 0:
+      digitalWrite(ledPinA[level], HIGH);
+      digitalWrite(ledPinB[level], HIGH);
+      break;
+    case 1:
+      digitalWrite(ledPinA[level], HIGH);
+      digitalWrite(ledPinB[level], HIGH);
+      break;
+
+    case 2:
+      digitalWrite(ledPinA[level], HIGH);
+      digitalWrite(ledPinB[level], HIGH);
+      break;
+    case 3:
+      digitalWrite(ledPinA[level], HIGH);
+      digitalWrite(ledPinB[level], HIGH);
+      break;
+    case 4:
+      digitalWrite(ledPinA[level], HIGH);
+      digitalWrite(ledPinB[level], HIGH);
+      break;
+
+    case 5:
+      digitalWrite(ledPinA[level], HIGH);
+      digitalWrite(ledPinB[level], HIGH);
+      break;
+
+    case 6:
+      digitalWrite(ledPinA[0], HIGH);
+      break;
+    case 7:
+      digitalWrite(ledPinB[0], HIGH);
+      break;
+    case 8:
+      digitalWrite(ledPinA[1], HIGH);
+      break;
+    case 9:
+      digitalWrite(ledPinB[1], HIGH);
+      break;
+    case 10:
+      digitalWrite(ledPinA[2], HIGH);
+      break;
+    case 11:
+      digitalWrite(ledPinB[2], HIGH);
+      break;
+    case 12:
+      digitalWrite(ledPinA[3], HIGH);
+      break;
+    case 13:
+      digitalWrite(ledPinB[3], HIGH);
+      break;
+    case 14:
+      digitalWrite(ledPinA[4], HIGH);
+      break;
+    case 15:
+      digitalWrite(ledPinB[4], HIGH);
+      break;
+    case 16:
+      digitalWrite(ledPinA[5], HIGH);
+      break;
+    case 17:
+      digitalWrite(ledPinB[5], HIGH);
+      break;
+
+  }
+
+
+}
 
 void loop() {
 
@@ -308,92 +397,3 @@ void loop() {
 
 
 
-void getCMD() {     // Input Comando auswerten
-  
-  while(Serial.available() > 0  ) {
-    
-        cmd= Serial.readString();// read the incoming data as string
-        Serial.println(cmd); 
-
-        if (cmd)
-        {
-          level = cmd.toInt();
-        }
-
-        
-     
-    } // End While
-  
-}
-
-int matrix() {
-
-  switch (level) {
-    case 0:
-      digitalWrite(ledPinA[level], HIGH);
-      digitalWrite(ledPinB[level], HIGH);
-      break;
-    case 1:
-      digitalWrite(ledPinA[level], HIGH);
-      digitalWrite(ledPinB[level], HIGH);
-      break;
-
-    case 2:
-      digitalWrite(ledPinA[level], HIGH);
-      digitalWrite(ledPinB[level], HIGH);
-      break;
-    case 3:
-      digitalWrite(ledPinA[level], HIGH);
-      digitalWrite(ledPinB[level], HIGH);
-      break;
-    case 4:
-      digitalWrite(ledPinA[level], HIGH);
-      digitalWrite(ledPinB[level], HIGH);
-      break;
-
-    case 5:
-      digitalWrite(ledPinA[level], HIGH);
-      digitalWrite(ledPinB[level], HIGH);
-      break;
-
-    case 6:
-      digitalWrite(ledPinA[0], HIGH);
-      break;
-    case 7:
-      digitalWrite(ledPinB[0], HIGH);
-      break;
-    case 8:
-      digitalWrite(ledPinA[1], HIGH);
-      break;
-    case 9:
-      digitalWrite(ledPinB[1], HIGH);
-      break;
-    case 10:
-      digitalWrite(ledPinA[2], HIGH);
-      break;
-    case 11:
-      digitalWrite(ledPinB[2], HIGH);
-      break;
-    case 12:
-      digitalWrite(ledPinA[3], HIGH);
-      break;
-    case 13:
-      digitalWrite(ledPinB[3], HIGH);
-      break;
-    case 14:
-      digitalWrite(ledPinA[4], HIGH);
-      break;
-    case 15:
-      digitalWrite(ledPinB[4], HIGH);
-      break;
-    case 16:
-      digitalWrite(ledPinA[5], HIGH);
-      break;
-    case 17:
-      digitalWrite(ledPinB[5], HIGH);
-      break;
-
-  }
-
-
-}

@@ -118,7 +118,7 @@ void setup() {
   
   if (digitalRead(buttonPin[5]) == HIGH) {
 
-  Serial.println("SCRIPT: CoinButton 26.10.2018");
+  Serial.println("SCRIPT: CoinButton 13.10.2020");
   Serial.println("initiate......");
   Serial.println("DebugMode ON");
   Serial.println("...");
@@ -250,7 +250,7 @@ void loop() {
     }
 
      Serial.println(syscmd[level]);
-     Serial.print("\r");
+     Serial.print("\n");
     
     for (int thisPin = 0; thisPin < pinCount; thisPin++) {
       digitalWrite(ledPinA[thisPin], HIGH);

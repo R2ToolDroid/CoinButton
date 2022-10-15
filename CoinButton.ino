@@ -249,7 +249,7 @@ void loop() {
     Serial.print("\n");
     }
 
-     Serial.println(syscmd[level]);
+     Serial.print(syscmd[level]);
      Serial.print("\n");
     
     for (int thisPin = 0; thisPin < pinCount; thisPin++) {
